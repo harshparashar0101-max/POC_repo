@@ -1,6 +1,10 @@
 
 import os
 
+print("RUNNING FILE =", os.path.abspath(__file__))
+print("JQL =", JQL)
+print("EMAIL =", EMAIL)
+
 print("EMAIL =", os.getenv("JIRA_EMAIL"))
 print("TOKEN exists =", bool(os.getenv("JIRA_API_TOKEN")))
 print("ENV KEYS SAMPLE =", [k for k in os.environ.keys() if "JIRA" in k])
