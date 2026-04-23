@@ -1,14 +1,5 @@
 
 import os
-
-print("RUNNING FILE =", os.path.abspath(__file__))
-print("JQL =", JQL)
-print("EMAIL =", EMAIL)
-
-print("EMAIL =", os.getenv("JIRA_EMAIL"))
-print("TOKEN exists =", bool(os.getenv("JIRA_API_TOKEN")))
-print("ENV KEYS SAMPLE =", [k for k in os.environ.keys() if "JIRA" in k])
-
 import requests
 from requests.auth import HTTPBasicAuth
 import json
@@ -22,8 +13,13 @@ EMAIL = os.getenv("JIRA_EMAIL")
 API_TOKEN = os.getenv("JIRA_API_TOKEN")
 ASSIGNEE_ACCOUNT_ID = "6327496e14c6b4b22109a627"
 
+
 # Final JQL for only 2 Story + 2 Tech Debt
 JQL = 'project = LOGI  AND assignee = 6327496e14c6b4b22109a627 AND type IN (Story, "Tech Debt") AND sprint = 2 ORDER BY created DESC'
+
+print("EMAIL =", os.getenv("JIRA_EMAIL"))
+print("TOKEN exists =", bool(os.getenv("JIRA_API_TOKEN")))
+print("ENV KEYS SAMPLE =", [k for k in os.environ.keys() if "JIRA" in k])
 
 auth = HTTPBasicAuth(EMAIL, API_TOKEN)
 
