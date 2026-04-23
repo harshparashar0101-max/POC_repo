@@ -52,8 +52,11 @@ TECHDEBT_SUBTASKS = {
 # FETCH PARENT ISSUES
 # ==========================================
 
+
 def get_issues():
+    
     url = f"{BASE_URL}/rest/api/3/search/jql"
+    print("JQL being used:", JQL)
 
     params = {
         "jql": JQL,
@@ -191,12 +194,22 @@ def add_estimate(issue_key, estimate_value):
         print("Status Code:", response.status_code)
         print("Response:", response.text)
         return False
+    
+
+def check_myself():
+     url = f"{BASE_URL}/rest/api/3/myself"
+     response = requests.get(url, headers=headers, auth=auth)
+     print("\n===== MYSELF DEBUG =====")
+     print("Status Code:", response.status_code)
+     print("Response:", response.text)
+     print("========================\n")
 
 # ==========================================
 # MAIN EXECUTION
 # ==========================================
 
 def main():
+    check_myself()
     issues = get_issues()
 
     total_created = 0
@@ -209,7 +222,7 @@ def main():
         issue_type = issue.get("fields", {}).get("issuetype", {}).get("name")
         summary = issue.get("fields", {}).get("summary")
 
-        print(f"\n🔹 Processing Parent: {key} | {issue_type} | {summary}")
+        print(f"\n Processing Parent: {key} | {issue_type} | {summary}")
 
         if issue_type == "Story":
             subtask_map = STORY_SUBTASKS
