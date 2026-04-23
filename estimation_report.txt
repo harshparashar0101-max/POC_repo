@@ -1,0 +1,6 @@
+Jira Estimation Automation Report
+=================================
+
+Total parents processed: 0
+Total subtasks created: 0
+Total subtasks skipped: 0
